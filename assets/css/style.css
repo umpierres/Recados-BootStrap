@@ -1,0 +1,124 @@
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Anybody', cursive;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+    overflow: hidden;
+}
+
+.form-size {
+    height: 90%;
+    width: 90%;
+}
+
+.size-div-form {
+    height: 65%;
+    width: 55%;
+}
+
+.shadow-animation-login {
+    animation: shadowAnimationLogin 4s infinite linear;
+}
+
+@keyframes shadowAnimationLogin {
+    0% {
+        box-shadow: 0.625rem 0.625rem 1.25rem 0.625rem #f9aefa;
+    }
+    50% {
+        box-shadow: 0.625rem 0.625rem 1.25rem 0.625rem #89d6d0;
+    }
+    100% {
+        box-shadow: 0.625rem 0.625rem 1.25rem 0.625rem #f9aefa;
+    }
+}
+.shadow-animation-sign {
+    animation: shadowAnimationSign 4s infinite linear;
+}
+
+@keyframes shadowAnimationSign {
+    0% {
+        box-shadow: 0.625rem 0.625rem 1.25rem 0.625rem #89d6d0;
+    }
+    50% {
+        box-shadow: 0.625rem 0.625rem 1.25rem 0.625rem #f9aefa;
+    }
+    100% {
+        box-shadow: 0.625rem 0.625rem 1.25rem 0.625rem #89d6d0;
+    }
+}
+
+.default-color {
+    color: #f9aefa;
+}
+
+.secundary-color {
+    color: #89d6d0;
+}
+
+.default-background-color {
+    background-color: #f9aefa;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #89d6d0;
+    color: white;
+}
+.secundary-background-color {
+    background-color: #89d6d0;
+    color: white;
+}
+
+.btn-secundary:hover {
+    background-color: #f9aefa;
+    color: white;
+}
+
+.default-border-hover:hover {
+    border-color: #89d6d0;
+    color: #f9aefa;
+}
+.secundary-border-hover:hover {
+    border-color: #f9aefa;
+    color: #89d6d0;
+}
+
+.default-border-color {
+    border-color: #f9aefa;
+}
+
+.secundary-border-color {
+    border-color: #89d6d0;
+}
+
+#place-animation-login {
+    animation: placeAnimationLogin 3s;
+    position: relative;
+}
+#place-animation-sign {
+    animation: placeAnimationSign 3s;
+    position: relative;
+}
+
+@keyframes placeAnimationLogin {
+    0% {
+        left: -50rem;
+    }
+    100% {
+        left: 0;
+    }
+}
+@keyframes placeAnimationSign {
+    0% {
+        right: -50rem;
+    }
+    100% {
+        right: 0;
+    }
+}
