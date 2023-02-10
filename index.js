@@ -87,7 +87,7 @@ form.addEventListener('submit', (evento) => {
         return;
     } else {
         guardarDadosLocalStorage('usuarioLogado', usuarioExiste);
-        window.location.href = './account.html';
+        window.location.href = './home.html';
     }
     setTimeout(() => {
         window.location.href = './index.html';
@@ -97,7 +97,7 @@ form.addEventListener('submit', (evento) => {
 document.addEventListener('DOMContentLoaded', () => {
     const usuarioLogado = localStorage.getItem('usuarioLogado');
     if (usuarioLogado) {
-        window.location.href = './account.html';
+        window.location.href = './home.html';
     }
 });
 
