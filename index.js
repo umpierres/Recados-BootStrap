@@ -1,5 +1,6 @@
 const listaCadastros = buscarDadosLocalStorage('cadastrosUsuarios');
-const erroDeDadosHTML = document.querySelector('#erroDeDados');
+const erroDeDadosCadastroHTML = document.querySelector('#erroDeDadosCadastro');
+const erroDeDadosLoginHTML = document.querySelector('#erroDeDadosLogin');
 document.addEventListener('DOMContentLoaded', () => {
     const usuarioLogado = localStorage.getItem('usuarioLogado');
     if (usuarioLogado) {
@@ -15,10 +16,10 @@ formCriarConta.addEventListener('submit', (evento) => {
     const senhaSign = document.querySelector('#senha-sign').value;
     const reSenhaSign = document.querySelector('#re-senha-sign').value;
     if (senhaSign !== reSenhaSign) {
-        erroDeDadosHTML.innerHTML =
-            '<p class="erroDeDados">Os dados não são iguais</p>';
+        erroDeDadosCadastroHTML.innerHTML =
+            '<p class="erroDeDadosCadastro text-danger">Os dados não são iguais</p>';
         setTimeout(() => {
-            erroDeDadosHTML.innerHTML = '';
+            erroDeDadosCadastroHTML.innerHTML = '';
         }, 3000);
         return;
     }
@@ -29,15 +30,22 @@ formCriarConta.addEventListener('submit', (evento) => {
             }
         })
     ) {
-        erroDeDadosHTML.innerHTML =
-            '<p class="erroDeDados">Esse usuario já está cadastrado</p>';
+        erroDeDadosCadastroHTML.innerHTML =
+            '<p class="erroDeDadosCadastro text-danger">Esse usuario já está cadastrado</p>';
         formCriarConta.reset();
         setTimeout(() => {
-            erroDeDadosHTML.innerHTML = '';
+            erroDeDadosCadastroHTML.innerHTML = '';
         }, 3000);
         return;
     }
-
+    if (senhaSign.length < 5) {
+        erroDeDadosCadastroHTML.innerHTML =
+            '<p class="erroDeDadosCadastro text-danger">A senha é muito curta</p>';
+        setTimeout(() => {
+            erroDeDadosCadastroHTML.innerHTML = '';
+        }, 3000);
+        return;
+    }
     const novoUsuario = {
         email: emailSign,
         senha: senhaSign,
@@ -54,35 +62,34 @@ formCriarConta.addEventListener('submit', (evento) => {
 
 ////////////
 
-const form = document.getElementById('form-login');
+const formLogin = document.getElementById('form-login');
 
-const inputEmail = document.getElementById('email-login').value;
-
-const inputPassword = document.getElementById('senha-login').value;
-form.addEventListener('change', (event) => {
+formLogin.addEventListener('change', (event) => {
     event.preventDefault();
-
-    if (!inputEmail || !inputEmail.includes('@') || !inputPassword) {
-        form.classList.add('was-validated');
+    const emailLogin = document.getElementById('email-login').value;
+    const senhaLogin = document.getElementById('senha-login').value;
+    if (!emailLogin || !emailLogin.includes('@') || !senhaLogin) {
+        formLogin.classList.add('was-validated');
         return;
     }
 });
 
-form.addEventListener('submit', (evento) => {
+formLogin.addEventListener('submit', (evento) => {
     evento.preventDefault();
-
+    const emailLogin = document.getElementById('email-login').value;
+    const senhaLogin = document.getElementById('senha-login').value;
     const usuarioExiste = listaCadastros.find((usuarioPessoa) => {
         return (
-            usuarioPessoa.email === inputEmail &&
-            usuarioPessoa.senha === inputPassword
+            usuarioPessoa.email === emailLogin &&
+            usuarioPessoa.senha === senhaLogin
         );
     });
     console.log(usuarioExiste);
     if (!usuarioExiste) {
-        erroDeDadosHTML.innerHTML =
-            '<p class="erroDeDados">Credencias invalidas</p>';
+        erroDeDadosLoginHTML.innerHTML =
+            '<p class="erroDeDadosLogin text-danger">Credencias invalidas</p>';
         setTimeout(() => {
-            erroDeDadosHTML.innerHTML = '';
+            erroDeDadosLoginHTML.innerHTML = '';
         }, 3000);
         return;
     } else {
