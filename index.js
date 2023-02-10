@@ -118,4 +118,6 @@ function buscarDadosLocalStorage(chave) {
     }
 }
 
+///// NÃO ESQUECER!!!!!!!!!!!!!!!!!!
+
 function toastSucesso(success) {}
