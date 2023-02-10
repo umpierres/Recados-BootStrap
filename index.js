@@ -15,19 +15,6 @@ formCriarConta.addEventListener('change', (event) => {
     const emailSign = document.querySelector('#email-sign').value;
     const senhaSign = document.querySelector('#senha-sign').value;
     const reSenhaSign = document.querySelector('#re-senha-sign').value;
-
-    if (!emailSign || !emailSign.includes('@') || !senhaSign || !reSenhaSign) {
-        formCriarConta.classList.add('was-validated');
-        return;
-    }
-});
-
-formCriarConta.addEventListener('submit', (evento) => {
-    evento.preventDefault();
-
-    const emailSign = document.querySelector('#email-sign').value;
-    const senhaSign = document.querySelector('#senha-sign').value;
-    const reSenhaSign = document.querySelector('#re-senha-sign').value;
     if (senhaSign !== reSenhaSign) {
         erroDeDadosCadastroHTML.innerHTML =
             '<p class="erroDeDadosCadastro text-danger">Os dados não são iguais</p>';
@@ -45,7 +32,6 @@ formCriarConta.addEventListener('submit', (evento) => {
     ) {
         erroDeDadosCadastroHTML.innerHTML =
             '<p class="erroDeDadosCadastro text-danger">Esse usuario já está cadastrado</p>';
-        formCriarConta.reset();
         setTimeout(() => {
             erroDeDadosCadastroHTML.innerHTML = '';
         }, 3000);
@@ -59,16 +45,26 @@ formCriarConta.addEventListener('submit', (evento) => {
         }, 3000);
         return;
     }
+    if (!emailSign || !emailSign.includes('@') || !senhaSign || !reSenhaSign) {
+        formCriarConta.classList.add('was-validated');
+        return;
+    }
+});
+
+formCriarConta.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+
+    const emailSign = document.querySelector('#email-sign').value;
+    const senhaSign = document.querySelector('#senha-sign').value;
+
     const novoUsuario = {
         email: emailSign,
         senha: senhaSign,
         recados: [],
     };
-
-    console.log(novoUsuario);
-
     listaCadastros.push(novoUsuario);
     guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
+    toastSucesso(success);
 });
 
 const formLogin = document.getElementById('form-login');
@@ -110,13 +106,6 @@ formLogin.addEventListener('submit', (evento) => {
     }, 200);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const usuarioLogado = localStorage.getItem('usuarioLogado');
-    if (usuarioLogado) {
-        window.location.href = './home.html';
-    }
-});
-
 function guardarDadosLocalStorage(chave, valor) {
     localStorage.setItem(chave, JSON.stringify(valor));
 }
@@ -128,3 +117,5 @@ function buscarDadosLocalStorage(chave) {
         return [];
     }
 }
+
+function toastSucesso(success) {}
