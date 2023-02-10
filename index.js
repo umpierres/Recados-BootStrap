@@ -71,10 +71,6 @@ formCriarConta.addEventListener('submit', (evento) => {
     guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
 });
 
-///?/////
-
-////////////
-
 const formLogin = document.getElementById('form-login');
 
 formLogin.addEventListener('change', (event) => {
