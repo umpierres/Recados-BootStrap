@@ -100,7 +100,7 @@ formLogin.addEventListener('submit', (evento) => {
     console.log(usuarioExiste);
     if (!usuarioExiste) {
         erroDeDadosLoginHTML.innerHTML =
-            '<p class="erroDeDadosLogin text-danger">Credencias invalidas</p>';
+            '<p class="erroDeDadosLogin text-danger">Esse e-mail e/ou senha não existe</p>';
         setTimeout(() => {
             erroDeDadosLoginHTML.innerHTML = '';
         }, 3000);
