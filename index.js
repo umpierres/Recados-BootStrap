@@ -9,6 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const formCriarConta = document.querySelector('#formCadastro');
+
+formCriarConta.addEventListener('change', (event) => {
+    event.preventDefault();
+    const emailSign = document.querySelector('#email-sign').value;
+    const senhaSign = document.querySelector('#senha-sign').value;
+    const reSenhaSign = document.querySelector('#re-senha-sign').value;
+
+    if (!emailSign || !emailSign.includes('@') || !senhaSign || !reSenhaSign) {
+        formCriarConta.classList.add('was-validated');
+        return;
+    }
+});
+
 formCriarConta.addEventListener('submit', (evento) => {
     evento.preventDefault();
 
