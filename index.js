@@ -15,6 +15,10 @@ formCriarConta.addEventListener('change', (event) => {
     const emailSign = document.querySelector('#email-sign').value;
     const senhaSign = document.querySelector('#senha-sign').value;
     const reSenhaSign = document.querySelector('#re-senha-sign').value;
+    if (!emailSign || !emailSign.includes('@') || !senhaSign || !reSenhaSign) {
+        formCriarConta.classList.add('was-validated');
+        return;
+    }
     if (senhaSign !== reSenhaSign) {
         erroDeDadosCadastroHTML.innerHTML =
             '<p class="erroDeDadosCadastro text-danger">Os dados não são iguais</p>';
@@ -45,10 +49,7 @@ formCriarConta.addEventListener('change', (event) => {
         }, 3000);
         return;
     }
-    if (!emailSign || !emailSign.includes('@') || !senhaSign || !reSenhaSign) {
-        formCriarConta.classList.add('was-validated');
-        return;
-    }
+    
 });
 
 formCriarConta.addEventListener('submit', (evento) => {
@@ -64,6 +65,8 @@ formCriarConta.addEventListener('submit', (evento) => {
     };
     listaCadastros.push(novoUsuario);
     guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
+    formCriarConta.reset()
+    formCriarConta.classList.remove('was-validated');
     toastSucesso(success);
 });
 
