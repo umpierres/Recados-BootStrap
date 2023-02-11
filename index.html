@@ -1,166 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Recados</title>
-        <link
-            rel="shortcut icon"
-            href="./assets/images/tarefas.png"
-            type="image/x-icon"
-        />
-        <link
-            rel="stylesheet"
-            href="./assets/bootstrap/css/bootstrap.min.css"
-        />
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-            rel="stylesheet"
-        />
-    </head>
-    <body class="vh-100 vw-100">
-        <main class="container-fluid h-100">
-            <section class="row h-100 justify-content-center">
-                <div class="col-lg-6 col-xl-5" id="place-animation-login">
-                    <div
-                        class="d-flex h-100 w-100 justify-content-center align-items-center"
-                    >
-                        <div
-                            class="bg-body rounded-5 size-div-form d-flex justify-content-center align-items-center shadow-animation-login"
-                        >
-                            <div class="form-size">
-                                <div class="text-center default-color">
-                                    <h2 class="title-size">FAÇA LOGIN</h2>
-                                </div>
-                                <div
-                                    class="h-100 w-100 d-flex justify-content-center align-items-center"
-                                >
-                                    <form
-                                        id="form-login"
-                                        class="needs-validation h-75 w-75"
-                                        novalidate
-                                    >
-                                        <div class="mb-3">
-                                            <label
-                                                for="email-login"
-                                                class="form-label"
-                                                >E-mail</label
-                                            >
-                                            <input
-                                                id="email-login"
-                                                type="email"
-                                                class="form-control secundary-color default-border-hover default-border-color"
-                                                aria-describedby="emailHelp"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="mb-3">
-                                            <label
-                                                for="senha-login"
-                                                class="form-label"
-                                                >Senha</label
-                                            >
-                                            <input
-                                                type="password"
-                                                id="senha-login"
-                                                class="form-control secundary-color default-border-hover default-border-color"
-                                                required
-                                            />
-                                        </div>
-                                        <div id="erroDeDadosLogin"></div>
-                                        <button
-                                            type="submit"
-                                            class="btn btn-primary default-background-color border-0 w-100"
-                                        >
-                                            Enviar
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-5" id="place-animation-sign">
-                    <div
-                        class="d-flex h-100 w-100 justify-content-center align-items-center"
-                    >
-                        <div
-                            class="bg-body rounded-5 size-div-form d-flex justify-content-center align-items-center shadow-animation-sign"
-                        >
-                            <div class="form-size">
-                                <div class="text-center secundary-color">
-                                    <h2 class="title-size">CADASTRE-SE</h2>
-                                </div>
-                                <div
-                                    class="h-100 w-100 d-flex justify-content-center align-items-center"
-                                >
-                                    <form id="formCadastro" class="h-75 w-75">
-                                        <div class="mb-3">
-                                            <label
-                                                for="email-sign"
-                                                class="form-label"
-                                                >Email
-                                            </label>
-                                            <input
-                                                type="email"
-                                                class="form-control secundary-border-color default-color secundary-border-hover"
-                                                id="email-sign"
-                                                aria-describedby="emailHelp"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="mb-3">
-                                            <label
-                                                for="senha-sign"
-                                                class="form-label"
-                                                >Senha</label
-                                            >
-                                            <input
-                                                type="password"
-                                                class="form-control secundary-border-color default-color secundary-border-hover"
-                                                minlength="5"
-                                                maxlength="17"
-                                                id="senha-sign"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="mb-3">
-                                            <label
-                                                for="re-senha-sign"
-                                                class="form-label"
-                                                >Repita a Senha</label
-                                            >
-                                            <input
-                                                type="password"
-                                                class="form-control secundary-border-color default-color secundary-border-hover"
-                                                id="re-senha-sign"
-                                                required
-                                            />
-                                        </div>
-                                        <div id="erroDeDadosCadastro"></div>
-                                        <button
-                                            type="submit"
-                                            class="btn btn-primary btn-secundary secundary-background-color border-0 w-100"
-                                        >
-                                            Enviar
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"
-        ></script>
-        <script src="./index.js"></script>
-    </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Recados</title>
+		<link
+			rel="shortcut icon"
+			href="./assets/images/tarefas.png"
+			type="image/x-icon"
+		/>
+		<link
+			rel="stylesheet"
+			href="./assets/bootstrap/css/bootstrap.min.css"
+		/>
+		<link rel="stylesheet" href="./assets/css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="vh-100 vw-100">
+		<main class="container-fluid h-100">
+			<div>
+				<div
+					class="toast m-3 end-0 position-absolute align-items-center text-bg-success border-0"
+					id="liveToast"
+					class="toast"
+					role="alert"
+					aria-live="assertive"
+					aria-atomic="true"
+				>
+					<div class="d-flex">
+						<div class="toast-body">
+							Usuario cadastrado com sucesso
+						</div>
+						<button
+							type="button"
+							class="btn-close btn-close-white me-2 m-auto"
+							data-bs-dismiss="toast"
+							aria-label="Close"
+						></button>
+					</div>
+				</div>
+			</div>
+
+			<section class="row h-100 justify-content-center">
+				<div class="col-lg-6 col-xl-5" id="place-animation-login">
+					<div
+						class="d-flex h-100 w-100 justify-content-center align-items-center"
+					>
+						<div
+							class="bg-body rounded-5 size-div-form d-flex justify-content-center align-items-center shadow-animation-login"
+						>
+							<div class="form-size">
+								<div class="text-center default-color">
+									<h2 class="title-size">FAÇA LOGIN</h2>
+								</div>
+								<div
+									class="h-100 w-100 d-flex justify-content-center align-items-center"
+								>
+									<form
+										id="form-login"
+										class="needs-validation h-75 w-75"
+										novalidate
+									>
+										<div class="mb-3">
+											<label
+												for="email-login"
+												class="form-label"
+												>E-mail</label
+											>
+											<input
+												id="email-login"
+												type="email"
+												class="form-control secundary-color default-border-hover default-border-color"
+												aria-describedby="emailHelp"
+												required
+											/>
+										</div>
+										<div class="mb-3">
+											<label
+												for="senha-login"
+												class="form-label"
+												>Senha</label
+											>
+											<input
+												type="password"
+												id="senha-login"
+												class="form-control secundary-color default-border-hover default-border-color"
+												required
+											/>
+										</div>
+										<div id="erroDeDadosLogin"></div>
+										<button
+											type="submit"
+											class="btn btn-primary default-background-color border-0 w-100"
+										>
+											Enviar
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-xl-5" id="place-animation-sign">
+					<div
+						class="d-flex h-100 w-100 justify-content-center align-items-center"
+					>
+						<div
+							class="bg-body rounded-5 size-div-form d-flex justify-content-center align-items-center shadow-animation-sign"
+						>
+							<div class="form-size">
+								<div class="text-center secundary-color">
+									<h2 class="title-size">CADASTRE-SE</h2>
+								</div>
+								<div
+									class="h-100 w-100 d-flex justify-content-center align-items-center"
+								>
+									<form id="formCadastro" class="h-75 w-75">
+										<div class="mb-3">
+											<label
+												for="email-sign"
+												class="form-label"
+												>Email
+											</label>
+											<input
+												type="email"
+												class="form-control secundary-border-color default-color secundary-border-hover"
+												id="email-sign"
+												aria-describedby="emailHelp"
+												required
+											/>
+										</div>
+										<div class="mb-3">
+											<label
+												for="senha-sign"
+												class="form-label"
+												>Senha</label
+											>
+											<input
+												type="password"
+												class="form-control secundary-border-color default-color secundary-border-hover"
+												minlength="5"
+												maxlength="17"
+												id="senha-sign"
+												required
+											/>
+										</div>
+										<div class="mb-3">
+											<label
+												for="re-senha-sign"
+												class="form-label"
+												>Repita a Senha</label
+											>
+											<input
+												type="password"
+												class="form-control secundary-border-color default-color secundary-border-hover"
+												id="re-senha-sign"
+												required
+											/>
+										</div>
+										<div id="erroDeDadosCadastro"></div>
+										<button
+											id="liveToastBtn"
+											type="submit"
+											class="btn btn-primary btn-secundary secundary-background-color border-0 w-100"
+										>
+											Enviar
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+			crossorigin="anonymous"
+		></script>
+		<script src="./index.js"></script>
+	</body>
 </html>

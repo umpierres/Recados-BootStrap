@@ -24,7 +24,7 @@ formCriarConta.addEventListener('change', (event) => {
             '<p class="erroDeDadosCadastro text-danger">Os dados não são iguais</p>';
         setTimeout(() => {
             erroDeDadosCadastroHTML.innerHTML = '';
-        }, 3000);
+        }, 2000);
         return;
     }
     if (
@@ -38,7 +38,7 @@ formCriarConta.addEventListener('change', (event) => {
             '<p class="erroDeDadosCadastro text-danger">Esse usuario já está cadastrado</p>';
         setTimeout(() => {
             erroDeDadosCadastroHTML.innerHTML = '';
-        }, 3000);
+        }, 2000);
         return;
     }
     if (senhaSign.length < 5) {
@@ -46,7 +46,7 @@ formCriarConta.addEventListener('change', (event) => {
             '<p class="erroDeDadosCadastro text-danger">A senha é muito curta</p>';
         setTimeout(() => {
             erroDeDadosCadastroHTML.innerHTML = '';
-        }, 3000);
+        }, 2000);
         return;
     }
     
@@ -61,14 +61,18 @@ formCriarConta.addEventListener('submit', (evento) => {
     const novoUsuario = {
         email: emailSign,
         senha: senhaSign,
+        id: gerarId(),
         recados: [],
     };
     listaCadastros.push(novoUsuario);
     guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
     formCriarConta.reset()
     formCriarConta.classList.remove('was-validated');
-    toastSucesso(success);
+    toastShow();
 });
+
+
+
 
 const formLogin = document.getElementById('form-login');
 
@@ -98,7 +102,7 @@ formLogin.addEventListener('submit', (evento) => {
             '<p class="erroDeDadosLogin text-danger">Esse e-mail e/ou senha não existe</p>';
         setTimeout(() => {
             erroDeDadosLoginHTML.innerHTML = '';
-        }, 3000);
+        }, 2000);
         return;
     } else {
         guardarDadosLocalStorage('usuarioLogado', usuarioExiste);
@@ -121,6 +125,19 @@ function buscarDadosLocalStorage(chave) {
     }
 }
 
-///// NÃO ESQUECER!!!!!!!!!!!!!!!!!!
+function toastShow(){
+    const toastTrigger = document.getElementById('liveToastBtn')
+    const toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
 
-function toastSucesso(success) {}
+    const toast = new bootstrap.Toast(toastLiveExample)
+
+    toast.show()
+  
+}
+}
+
+
+function gerarId() {
+    return new Date().getTime();
+}
