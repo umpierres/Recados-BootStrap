@@ -1,51 +1,27 @@
-const usuarioLogado = buscarDadosLocalStorage('usuarioLogado');
-
+const toastDiv = document.getElementById('toast-alert');
+const toast = new bootstrap.Toast(toastDiv);
 document.addEventListener('DOMContentLoaded', () => {
-    if (!usuarioLogado.email) {
-        window.location.href = './index.html';
-    } else {
-       /*  mostrarRegistrosHTML(); */
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+    if (usuarioLogado) {
+        window.location.href = './home.html';
     }
-});
-
-const listaCadastros = buscarDadosLocalStorage('cadastrosUsuarios');
-const tbody = document.querySelector('#tabelaBody');
-const index = listaCadastros.find(
-        (usuario) => {if(usuario.id === usuarioLogado.id) {return usuario.id}}
-);
-console.log(index)
-
+}); 
 
 function gerarId() {
     return new Date().getTime();
 }
 
+function toastShow(tipo, mensagem) {
+    toastDiv.classList.add(`text-bg-${tipo}`);
 
+    const espacoMensagem = document.getElementById('mensagem');
+    espacoMensagem.innerHTML = mensagem;
 
+    toast.show();
 
-    
+    setTimeout(() => {
+        toast.hide();
 
-function apagarRecado(indice) {
-    const trRemove = document.getElementById(indice);
-    trRemove.remove();
-    listaCadastros[index].recados.splice(indice, 1);
-    guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
-    mostrarRegistrosHTML();
-}
-
-function sair() {
-    localStorage.removeItem('usuarioLogado');
-    window.location.href = './index.html';
-}
-
-function guardarDadosLocalStorage(chave, valor) {
-    localStorage.setItem(chave, JSON.stringify(valor));
-}
-
-function buscarDadosLocalStorage(chave) {
-    if (localStorage.getItem(chave)) {
-        return JSON.parse(localStorage.getItem(chave));
-    } else {
-        return {};
-    }
+        toastDiv.classList.remove(`text-bg-${tipo}`);
+    }, 5000);
 }
