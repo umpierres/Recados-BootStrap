@@ -1,6 +1,8 @@
 const listaCadastros = buscarDadosLocalStorage('cadastrosUsuarios');
 const erroDeDadosCadastroHTML = document.querySelector('#erroDeDadosCadastro');
 const erroDeDadosLoginHTML = document.querySelector('#erroDeDadosLogin');
+const toastDiv = document.getElementById('toast-alert');
+const toast = new bootstrap.Toast(toastDiv);
 document.addEventListener('DOMContentLoaded', () => {
     const usuarioLogado = localStorage.getItem('usuarioLogado');
     if (usuarioLogado) {
@@ -49,7 +51,6 @@ formCriarConta.addEventListener('change', (event) => {
         }, 2000);
         return;
     }
-    
 });
 
 formCriarConta.addEventListener('submit', (evento) => {
@@ -66,13 +67,10 @@ formCriarConta.addEventListener('submit', (evento) => {
     };
     listaCadastros.push(novoUsuario);
     guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
-    formCriarConta.reset()
+    formCriarConta.reset();
     formCriarConta.classList.remove('was-validated');
-    toastShow();
+    toastShow('success', 'Usuario cadastrado com sucesso');
 });
-
-
-
 
 const formLogin = document.getElementById('form-login');
 
@@ -125,18 +123,20 @@ function buscarDadosLocalStorage(chave) {
     }
 }
 
-function toastShow(){
-    const toastTrigger = document.getElementById('liveToastBtn')
-    const toastLiveExample = document.getElementById('liveToast')
-if (toastTrigger) {
+function toastShow(tipo, mensagem) {
+    toastDiv.classList.add(`text-bg-${tipo}`);
 
-    const toast = new bootstrap.Toast(toastLiveExample)
+    const espacoMensagem = document.getElementById('mensagem');
+    espacoMensagem.innerHTML = mensagem;
 
-    toast.show()
-  
+    toast.show();
+
+    setTimeout(() => {
+        toast.hide();
+
+        toastDiv.classList.remove(`text-bg-${tipo}`);
+    }, 5000);
 }
-}
-
 
 function gerarId() {
     return new Date().getTime();
