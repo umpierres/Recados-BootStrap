@@ -3,6 +3,9 @@ const erroDeDadosCadastroHTML = document.querySelector('#erroDeDadosCadastro');
 const erroDeDadosLoginHTML = document.querySelector('#erroDeDadosLogin');
 const toastDiv = document.getElementById('toast-alert');
 const toast = new bootstrap.Toast(toastDiv);
+const formCriarConta = document.querySelector('#formCadastro');
+const formLogin = document.getElementById('form-login');
+
 document.addEventListener('DOMContentLoaded', () => {
     const usuarioLogado = localStorage.getItem('usuarioLogado');
     if (usuarioLogado) {
@@ -10,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const formCriarConta = document.querySelector('#formCadastro');
+
 
 formCriarConta.addEventListener('change', (event) => {
     event.preventDefault();
@@ -21,58 +24,67 @@ formCriarConta.addEventListener('change', (event) => {
         formCriarConta.classList.add('was-validated');
         return;
     }
-    if (senhaSign !== reSenhaSign) {
-        erroDeDadosCadastroHTML.innerHTML =
-            '<p class="erroDeDadosCadastro text-danger">Os dados não são iguais</p>';
-        setTimeout(() => {
-            erroDeDadosCadastroHTML.innerHTML = '';
-        }, 2000);
-        return;
-    }
-    if (
-        listaCadastros.some((usuarioCadastrado) => {
-            if (usuarioCadastrado.email === emailSign) {
-                return true;
-            }
-        })
-    ) {
-        erroDeDadosCadastroHTML.innerHTML =
-            '<p class="erroDeDadosCadastro text-danger">Esse usuario já está cadastrado</p>';
-        setTimeout(() => {
-            erroDeDadosCadastroHTML.innerHTML = '';
-        }, 2000);
-        return;
-    }
-    if (senhaSign.length < 5) {
-        erroDeDadosCadastroHTML.innerHTML =
-            '<p class="erroDeDadosCadastro text-danger">A senha é muito curta</p>';
-        setTimeout(() => {
-            erroDeDadosCadastroHTML.innerHTML = '';
-        }, 2000);
-        return;
-    }
+    
+   
+    
 });
+
+
 
 formCriarConta.addEventListener('submit', (evento) => {
-    evento.preventDefault();
+        evento.preventDefault();
+    
+        const emailSign = document.querySelector('#email-sign').value;
+        const senhaSign = document.querySelector('#senha-sign').value;
+        const reSenhaSign = document.querySelector('#re-senha-sign').value;
+        if (senhaSign !== reSenhaSign) {
+            erroDeDadosCadastroHTML.innerHTML =
+                '<p class="erroDeDadosCadastro text-danger">Os dados não são iguais</p>';
+            setTimeout(() => {
+                erroDeDadosCadastroHTML.innerHTML = '';
+            }, 2000);
+            return;
+        }
+        if (
+            listaCadastros.some((usuarioCadastrado) => {
+                if (usuarioCadastrado.email === emailSign) {
+                    return true;
+                }
+            })
+        ) {
+            erroDeDadosCadastroHTML.innerHTML =
+                '<p class="erroDeDadosCadastro text-danger">Esse usuario já está cadastrado</p>';
+            setTimeout(() => {
+                erroDeDadosCadastroHTML.innerHTML = '';
+            }, 2000);
+            return;
+        }
+        if (senhaSign.length < 5) {
+            erroDeDadosCadastroHTML.innerHTML =
+                '<p class="erroDeDadosCadastro text-danger">A senha é muito curta</p>';
+            setTimeout(() => {
+                erroDeDadosCadastroHTML.innerHTML = '';
+            }, 2000);
+            return;
+        }
+    
+        const novoUsuario = {
+            email: emailSign,
+            senha: senhaSign,
+            id: gerarId(),
+            recados: [],
+        };
+        listaCadastros.push(novoUsuario);
+        guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
+        formCriarConta.reset();
+        formCriarConta.classList.remove('was-validated');
+        toastShow('success', 'Usuario cadastrado com sucesso');
+    }); 
 
-    const emailSign = document.querySelector('#email-sign').value;
-    const senhaSign = document.querySelector('#senha-sign').value;
 
-    const novoUsuario = {
-        email: emailSign,
-        senha: senhaSign,
-        id: gerarId(),
-        recados: [],
-    };
-    listaCadastros.push(novoUsuario);
-    guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
-    formCriarConta.reset();
-    formCriarConta.classList.remove('was-validated');
-    toastShow('success', 'Usuario cadastrado com sucesso');
-});
 
-const formLogin = document.getElementById('form-login');
+
+
 
 formLogin.addEventListener('change', (event) => {
     event.preventDefault();
@@ -124,6 +136,7 @@ function buscarDadosLocalStorage(chave) {
 }
 
 function toastShow(tipo, mensagem) {
+    window.scrollTo(0, 0);
     toastDiv.classList.add(`text-bg-${tipo}`);
 
     const espacoMensagem = document.getElementById('mensagem');
@@ -142,7 +155,4 @@ function gerarId() {
     return new Date().getTime();
 }
 
-const btn = document.querySelector("#voltar");
-btn.addEventListener("click", function() {
-    window.scrollTo(0, 0);
-});
+
