@@ -2,8 +2,8 @@ const toastDiv = document.getElementById('toast-alert');
 const toast = new bootstrap.Toast(toastDiv);
 document.addEventListener('DOMContentLoaded', () => {
     const usuarioLogado = localStorage.getItem('usuarioLogado');
-    if (usuarioLogado) {
-        window.location.href = './home.html';
+    if (!usuarioLogado) {
+        window.location.href = './index.html';
     }
 }); 
 
@@ -24,4 +24,22 @@ function toastShow(tipo, mensagem) {
 
         toastDiv.classList.remove(`text-bg-${tipo}`);
     }, 5000);
+}
+
+
+function sair() {
+    localStorage.removeItem('usuarioLogado');
+    window.location.href = './index.html';
+}
+
+function guardarDadosLocalStorage(chave, valor) {
+    localStorage.setItem(chave, JSON.stringify(valor));
+}
+
+function buscarDadosLocalStorage(chave) {
+    if (localStorage.getItem(chave)) {
+        return JSON.parse(localStorage.getItem(chave));
+    } else {
+        return [];
+    }
 }
