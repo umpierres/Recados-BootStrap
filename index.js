@@ -141,3 +141,8 @@ function toastShow(tipo, mensagem) {
 function gerarId() {
     return new Date().getTime();
 }
+
+const btn = document.querySelector("#voltar");
+btn.addEventListener("click", function() {
+    window.scrollTo(0, 0);
+});
