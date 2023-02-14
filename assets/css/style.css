@@ -79,6 +79,11 @@ body {
     }
 }
 
+.icon-middle {
+    font-size: 1.6rem;
+    margin: 1rem 2.5rem;
+}
+
 .default-color {
     color: #f9aefa;
 }
