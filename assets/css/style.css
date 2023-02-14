@@ -9,7 +9,7 @@
 
 body {
     background-color: rgb(238, 238, 238);
-   /*  overflow: hidden; */
+    overflow: hidden; 
 }
 
 .title-size {
@@ -39,6 +39,9 @@ body {
     }
     .col-min-size {
         margin: 3rem ;
+    }
+    body {
+        overflow: visible ; 
     }
     
  
@@ -77,11 +80,6 @@ body {
     100% {
         box-shadow: 0.625rem 0.625rem 1.25rem 0.625rem #89d6d0;
     }
-}
-
-.icon-middle {
-    font-size: 1.6rem;
-    margin: 1rem 2.5rem;
 }
 
 .default-color {
