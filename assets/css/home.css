@@ -78,4 +78,17 @@ body {
         overflow: auto;
         height: 70vh;
     }
+    .modal-btn{
+        bottom: 1rem!important;
+        right: 1rem!important;
+    }
 }
+
+.modal-btn {
+    bottom: 2rem;
+    right: 3rem;
+}
+input::placeholder{
+   
+    color: #89d6d0!important;
+  }
