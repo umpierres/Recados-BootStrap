@@ -23,8 +23,9 @@ const formCriar = document.getElementById('form-criar')
 formCriar.addEventListener('submit', (event => {
     event.preventDefault();
     if(listaCadastros[index].recados.length > 25){
-        toastShow('danger','Numero de recados excedidos')
+        formCriar.reset()
         modalCriar.hide()
+        toastShow('danger','Numero de recados excedidos')
         return
     }
     if(!formCriar.checkValidity()) {
