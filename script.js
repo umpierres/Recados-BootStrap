@@ -16,7 +16,11 @@ const tbody = document.querySelector('#tabelaBody');
 const index = listaCadastros.findIndex(
     (usuario) => usuario.id === usuarioLogado.id
 );
+
+const modalExcluir = new bootstrap.Modal('#modal-excluir')
 const modalCriar = new bootstrap.Modal('#modal-criar')
+const modalAtualizar = new bootstrap.Modal('#modal-atualizar')
+const formAtualizar = document.getElementById('form-atualizar')
 
 const formCriar = document.getElementById('form-criar')
 
@@ -50,15 +54,6 @@ formCriar.addEventListener('submit', (event => {
     toastShow('success', 'Recado criado com sucesso!')
 }))
 
-
-
-
-
-
-
-
-
-
 function gerarId() {
     return new Date().getTime();
 }
@@ -76,6 +71,53 @@ function toastShow(tipo, mensagem) {
 
         toastDiv.classList.remove(`text-bg-${tipo}`);
     }, 5000);
+}
+
+
+
+function apagarRecado(indice, id) {
+    listaCadastros[index].recados.splice(indice, 1)
+    guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
+    const trRemover = document.getElementById(id)
+    trRemover.remove()
+    modalExcluir.hide()
+    toastShow('success', 'Contato excluido com sucesso!')
+     
+}
+
+function mostrarExcluir(indice, id) {
+    
+    modalExcluir.show()
+    const botaoExcluir = document.getElementById('btn-delete')
+    botaoExcluir.setAttribute('onclick', `apagarRecado(${indice}, ${id})`)
+
+}
+
+
+
+function mostrarAtualizar(indice) {
+
+    modalAtualizar.show()
+    const tituloAtualizar = document.getElementById('tituloAtualizarRecado')
+    const mensagemAtualizar = document.getElementById('mensagemAtualizarRecado')
+    
+    formAtualizar.addEventListener('submit', (ev) => {
+        ev.preventDefault()
+    
+        if(!formAtualizar.checkValidity()) {
+            formAtualizar.classList.add('was-validated')
+            return
+        }
+        listaCadastros[index].recados[indice].titulo = tituloAtualizar.value;
+        listaCadastros[index].recados[indice].mensagem = mensagemAtualizar.value;
+        guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
+        mostrarRegistrosHTML()
+        modalAtualizar.hide()
+        formAtualizar.classList.remove('was-validated')
+        formAtualizar.reset()
+        toastShow('success', 'Contato atualizado com sucesso!')
+        
+    })
 }
 
 
@@ -98,7 +140,7 @@ function buscarDadosLocalStorage(chave) {
 
 function mostrarRegistrosHTML() {
     tbody.innerHTML = ''
-    listaCadastros[index].recados.forEach((valor) => {
+    listaCadastros[index].recados.forEach((valor,indice) => {
         tbody.innerHTML += `
         <tr id="${valor.id}">
         
@@ -110,8 +152,8 @@ function mostrarRegistrosHTML() {
             <td>
                 <button
                     class='border-0 bg-body'
-                    data-id="${valor.id}"
-                     onclick="editarRecado(this)" 
+                    
+                     onclick="mostrarAtualizar(${indice})" 
                 >
                     <i
                         class="bi bi-pencil-square text-success"
@@ -119,9 +161,9 @@ function mostrarRegistrosHTML() {
                 </button>
                 <button
                 class='border-0 bg-body'
-                    data-id="${valor.id}"
                     
-                    onclick="apagarRecado(this)" 
+                    
+                    onclick="mostrarExcluir(${indice}, ${valor.id})" 
                 >
                     <i
                         class="bi bi-trash-fill text-danger"
