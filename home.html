@@ -57,6 +57,7 @@
 					</div>
 				</div>
 			</main>
+			<!-- modal criar recado-->
 			<div
 				class="modal fade"
 				id="modal-criar"
@@ -94,7 +95,7 @@
 									</label>
 									<input
 										type="text"
-										class="form-control default-border-color default-color default-border-hover"
+										class="form-control text-break default-border-color default-color default-border-hover"
 										id="tituloRecado"
 										minlength="3"
 										required
@@ -112,9 +113,9 @@
 									</label>
 									<input
 										type="text"
-										class="form-control default-border-color default-color default-border-hover"
+										class="form-control text-break default-border-color default-color default-border-hover"
 										minlength="3"
-										maxlength="30"
+										maxlength="15"
 										id="mensagemRecado"
 										required
 										placeholder="Ex: Somente brancas e pretas"
@@ -133,6 +134,54 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- modal excluir recado-->
+			<div
+				class="modal fade"
+				id="modal-excluir"
+				tabindex="-1"
+				aria-labelledby="titleModalDelete"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="titleModalDelete">
+								Excluir Contato
+							</h1>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Fechar"
+							></button>
+						</div>
+						<div class="modal-body">
+							<p>
+								Tem certeza que realizar a exclusão? Esta
+								operação é definitiva.
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Cancelar
+							</button>
+							<button
+								type="button"
+								class="btn btn-danger"
+								id="btn-delete"
+							>
+								Excluir
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- botao criar recado-->
 			<button
 				class="btn btn-lg secundary-background-color rounded-circle position-absolute modal-btn btn-secundary"
 				data-bs-toggle="modal"
@@ -140,6 +189,7 @@
 			>
 				<i class="bi bi-plus-lg"></i>
 			</button>
+			<!-- toast -->
 			<div>
 				<div
 					class="toast m-3 top-0 end-0 position-absolute align-items-center text-bg-success border-0"
@@ -156,6 +206,83 @@
 							data-bs-dismiss="toast"
 							aria-label="Close"
 						></button>
+					</div>
+				</div>
+			</div>
+			<!--modal atualizar-->
+			<div
+				class="modal fade"
+				id="modal-atualizar"
+				tabindex="-1"
+				aria-labelledby="titleModalUpdate"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1
+								class="modal-title fs-5 default-color"
+								id="titleModalCreate"
+							>
+								Criar recado
+							</h1>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Fechar"
+							></button>
+						</div>
+						<form
+							id="form-atualizar"
+							class="needs-validation"
+							novalidate
+						>
+							<div class="modal-body">
+								<div class="mb-3">
+									<label
+										for="tituloAtualizarRecado"
+										class="form-label default-color"
+										>Titulo:
+									</label>
+									<input
+										type="text"
+										class="form-control default-border-color default-color default-border-hover"
+										id="tituloAtualizarRecado"
+										minlength="3"
+										required
+										placeholder="Ex: Lavar a roupa"
+									/>
+									<div class="invalid-feedback default-color">
+										Por favor, informe o titulo
+									</div>
+								</div>
+								<div class="mb-3">
+									<label
+										for="mensagemAtualizarRecado"
+										class="form-label default-color"
+										>Descrição:
+									</label>
+									<input
+										type="text"
+										class="form-control default-border-color default-color default-border-hover"
+										minlength="3"
+										maxlength="15"
+										id="mensagemAtualizarRecado"
+										required
+										placeholder="Ex: Somente brancas e pretas"
+									/>
+									<div class="invalid-feedback default-color">
+										Por favor, informe algum valor
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary">
+									Salvar
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
