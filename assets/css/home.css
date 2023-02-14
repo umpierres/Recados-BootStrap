@@ -1,0 +1,81 @@
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Anybody', cursive;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+    
+}
+
+
+ #toast-alert{
+    z-index: 999;
+ }
+
+
+.icon-middle {
+    font-size: 1.6rem;
+    margin: 1rem 2.5rem;
+}
+
+.default-color {
+    color: #f9aefa;
+}
+
+.secundary-color {
+    color: #89d6d0;
+}
+
+.default-background-color {
+    background-color: #f9aefa;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #89d6d0;
+    color: white;
+}
+.secundary-background-color {
+    background-color: #89d6d0;
+    color: white;
+}
+
+.btn-secundary:hover {
+    background-color: #f9aefa;
+    color: white;
+}
+
+.default-border-hover:hover {
+    border-color: #89d6d0;
+    color: #f9aefa;
+}
+.secundary-border-hover:hover {
+    border-color: #f9aefa;
+    color: #89d6d0;
+}
+
+.default-border-color {
+    border-color: #f9aefa;
+}
+
+.secundary-border-color {
+    border-color: #89d6d0;
+}
+
+
+.table-div {
+    overflow: auto;
+    height: 80vh;
+}
+
+@media (max-width: 991.98px) {
+    .table-div {
+        overflow: auto;
+        height: 70vh;
+    }
+}
