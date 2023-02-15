@@ -76,20 +76,19 @@ function toastShow(tipo, mensagem) {
 
 
 function apagarRecado(id) {
-   
+    listaCadastros[index].recados.splice(indiceGlobal, 1)
     const trRemover = document.getElementById(id)
     trRemover.remove()
-    listaCadastros[index].recados.splice(indiceGlobal, 1)
     guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
     modalExcluir.hide()
     toastShow('success', 'Contato excluido com sucesso!')
      
 }
 
-function mostrarExcluir( id) {
+function mostrarExcluir(id) {
     modalExcluir.show()
     const botaoExcluir = document.getElementById('btn-delete')
-    botaoExcluir.setAttribute('onclick', `apagarRecado( ${id})`)
+    botaoExcluir.setAttribute('onclick', `apagarRecado(${id})`)
 }
 
 
@@ -163,7 +162,7 @@ function mostrarRegistrosHTML() {
                 class='border-0 bg-body'
                     
                     
-                    onclick="mostrarExcluir(${indice}, ${valor.id})" 
+                    onclick="mostrarExcluir(${valor.id})" 
                 >
                     <i
                         class="bi bi-trash-fill text-danger"
