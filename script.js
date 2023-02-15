@@ -1,4 +1,4 @@
-
+let indiceGlobal = -1;
 const usuarioLogado = buscarDadosLocalStorage('usuarioLogado');
 const listaCadastros = buscarDadosLocalStorage('cadastrosUsuarios');
 document.addEventListener('DOMContentLoaded', () => {
@@ -75,50 +75,50 @@ function toastShow(tipo, mensagem) {
 
 
 
-function apagarRecado(indice, id) {
-    listaCadastros[index].recados.splice(indice, 1)
-    guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
+function apagarRecado(id) {
+   
     const trRemover = document.getElementById(id)
     trRemover.remove()
+    listaCadastros[index].recados.splice(indiceGlobal, 1)
+    guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
     modalExcluir.hide()
     toastShow('success', 'Contato excluido com sucesso!')
      
 }
 
-function mostrarExcluir(indice, id) {
-    
+function mostrarExcluir( id) {
     modalExcluir.show()
     const botaoExcluir = document.getElementById('btn-delete')
-    botaoExcluir.setAttribute('onclick', `apagarRecado(${indice}, ${id})`)
-
+    botaoExcluir.setAttribute('onclick', `apagarRecado( ${id})`)
 }
 
 
 
 function mostrarAtualizar(indice) {
-
     modalAtualizar.show()
-    const tituloAtualizar = document.getElementById('tituloAtualizarRecado')
-    const mensagemAtualizar = document.getElementById('mensagemAtualizarRecado')
-    
-    formAtualizar.addEventListener('submit', (ev) => {
-        ev.preventDefault()
-    
-        if(!formAtualizar.checkValidity()) {
-            formAtualizar.classList.add('was-validated')
-            return
-        }
-        listaCadastros[index].recados[indice].titulo = tituloAtualizar.value;
-        listaCadastros[index].recados[indice].mensagem = mensagemAtualizar.value;
-        guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
-        mostrarRegistrosHTML()
-        modalAtualizar.hide()
-        formAtualizar.classList.remove('was-validated')
-        formAtualizar.reset()
-        toastShow('success', 'Contato atualizado com sucesso!')
-        
-    })
+    document.getElementById('tituloAtualizarRecado').value =  listaCadastros[index].recados[indice].titulo
+    document.getElementById('mensagemAtualizarRecado').value = listaCadastros[index].recados[indice].mensagem 
+    indiceGlobal = indice
 }
+
+formAtualizar.addEventListener('submit', (evento) => {
+    evento.preventDefault()
+
+    if(!formAtualizar.checkValidity()) {
+        formAtualizar.classList.add('was-validated')
+        return
+    }
+    const tituloAtualizar = document.getElementById('tituloAtualizarRecado').value
+    const mensagemAtualizar = document.getElementById('mensagemAtualizarRecado').value
+    listaCadastros[index].recados[indiceGlobal].titulo = tituloAtualizar;
+    listaCadastros[index].recados[indiceGlobal].mensagem = mensagemAtualizar;
+    guardarDadosLocalStorage('cadastrosUsuarios', listaCadastros);
+    mostrarRegistrosHTML()
+    modalAtualizar.hide()
+    formAtualizar.classList.remove('was-validated')
+    formAtualizar.reset()
+    toastShow('success', 'Contato atualizado com sucesso!')
+})
 
 
 function sair() {
